@@ -1,31 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+
 <title>Canvas</title>
 </head>
 <body>
-<canvas id="canvas" width="200" height="200"></canvas>
+<canvas id="canvas" width="600" height="600"></canvas>
+
 <script>
+  var peer = new Peer(); 
+var conn = peer.connect('connor7341');
+// on open will be launch when you successfully connect to PeerServer
+conn.on('open', function(){
+  // here you have conn.id
+  conn.send('hi!');
+});
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
+
 
   var drawCar = function(x, y){
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
-    ctx.fillRect(10,10,10,100);
-    ctx.fillRect(10,10,150,10);
-    ctx.fillRect(150,10,10,100);
-    ctx.fillRect(10,100,150,10);
-    ctx.fillRect(150,40,100,50);
-    ctx.fillRect(40,100,20,30);
-    ctx.fillRect(100,100,20,30);
-
- 
+    ctx.fillRect(10+x,10+y,10,100);
+    ctx.fillRect(10+x,10+y,150,10);
+    ctx.fillRect(150+x,10+y,10,100);
+    ctx.fillRect(10+x,100+y,150,10);
+    ctx.fillRect(150+x,40+y,50,50);
+    ctx.fillRect(40+x,100+y,20,30);
+    ctx.fillRect(100+x,100+y,20,30);
  
   }
-      drawCar(10, 10);
+  var carX = 10;
+  var carY = 10;
+  var speedX = 10;
+  var speedY = 10;
 
+      
+  window.addEventListener('keydown',this.check,false);
+  window.setInterval(this.everySecond, 500);
+
+  function check(e) {
+    var code = e.keyCode;
+    switch (code) {
+      case 87:speedY -= 1; break //w
+      case 83:speedY += 1; break //s
+      case 65:speedX -= 1; break //a
+      case 68:speedX += 1; break //d
+    }         
+    console.log("speedX is", speedX, "speedY is" , speedY , "carX is ", carX, "carY is ",carY); 
+
+  }
+  function everySecond(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  
+    carY += speedY;
+    carX += speedX;
+
+    drawCar(carX, carY); 
+
+  }
 </script>
-  sheep
 </body>
 </html>
