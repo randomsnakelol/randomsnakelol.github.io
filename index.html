@@ -6,16 +6,15 @@
 <title>Canvas</title>
 </head>
 <body>
-<canvas id="canvas" width="600" height="600"></canvas>
+  <input type = "text" id="name">
+  <button id = "connor7341"> Host </button>
+  <button id = "ponnor7341"> Join </button>
+
+<canvas id="canvas" width="10000" height="10000"></canvas>
 
 <script>
-  var peer = new Peer(); 
-var conn = peer.connect('connor7341');
-// on open will be launch when you successfully connect to PeerServer
-conn.on('open', function(){
-  // here you have conn.id
-  conn.send('hi!');
-});
+
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
@@ -23,23 +22,52 @@ var ctx = canvas.getContext("2d");
   var drawCar = function(x, y){
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
-    ctx.fillRect(10+x,10+y,10,100);
-    ctx.fillRect(10+x,10+y,150,10);
-    ctx.fillRect(150+x,10+y,10,100);
-    ctx.fillRect(10+x,100+y,150,10);
-    ctx.fillRect(150+x,40+y,50,50);
-    ctx.fillRect(40+x,100+y,20,30);
-    ctx.fillRect(100+x,100+y,20,30);
+   
+    ctx.fillRect(0+x,0+y,50,50);
+    
  
   }
-  var carX = 10;
-  var carY = 10;
-  var speedX = 10;
-  var speedY = 10;
+  var carX = 0;
+  var carY = 0;
+  var speedX = 0;
+  var speedY = 0;
 
       
   window.addEventListener('keydown',this.check,false);
-  window.setInterval(this.everySecond, 500);
+// here to     
+  var onHostClick = function() {
+    var peer = new Peer(document.getElementById("name").value);
+peer.on('connection', function(conn) {
+  conn.on('data', function(data){
+    // Will print 'hi!'
+    console.log(data);
+  });
+})
+
+    console.log(document.getElementById("name").value   ,
+"Is Hosting game...");
+  };
+
+  var clickerButton = document.getElementById("connor7341");
+
+clickerButton.addEventListener("click", onHostClick);
+  
+  
+
+  var onJoinClick = function() {
+    var peer = new Peer(); 
+    var conn = peer.connect(document.getElementById("name").value);
+      conn.on('open', function(){
+      conn.send('hi!');
+      });
+    console.log(document.getElementById("name").value,"Is Joining game...");
+  };
+
+  var clickButton = document.getElementById("ponnor7341");
+
+clickButton.addEventListener("click", onJoinClick);
+  // here
+  window.setInterval(this.everySecond, 1);
 
   function check(e) {
     var code = e.keyCode;
@@ -49,7 +77,7 @@ var ctx = canvas.getContext("2d");
       case 65:speedX -= 1; break //a
       case 68:speedX += 1; break //d
     }         
-    console.log("speedX is", speedX, "speedY is" , speedY , "carX is ", carX, "carY is ",carY); 
+    //console.log("speedX is", speedX, "speedY is" , speedY , "carX is ", carX, "carY is ",carY); 
 
   }
   function everySecond(){
