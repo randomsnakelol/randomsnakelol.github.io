@@ -58,7 +58,8 @@ clickerButton.addEventListener("click", onHostClick);
     var peer = new Peer(); 
     var conn = peer.connect(document.getElementById("name").value);
       conn.on('open', function(){
-      conn.send('hi boy!');
+      conn.send("doy");
+        console.log("boy");
       });
     console.log(document.getElementById("name").value,"Is Joining game...");
   };
