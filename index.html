@@ -14,7 +14,7 @@
 
 <script>
 
-
+ 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
@@ -58,7 +58,7 @@ clickerButton.addEventListener("click", onHostClick);
     var peer = new Peer(); 
     var conn = peer.connect(document.getElementById("name").value);
       conn.on('open', function(){
-      conn.send('hi!');
+      conn.send('hi boy!');
       });
     console.log(document.getElementById("name").value,"Is Joining game...");
   };
