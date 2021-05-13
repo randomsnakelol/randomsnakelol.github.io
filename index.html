@@ -6,11 +6,11 @@
 <title>Canvas</title>
 </head>
 <body>
-  <input type = "text" id="name">
-    <input type = "text" id="notname">
+  <input type = "text" id="channel">
+    <input type = "text" id="messages">
 
-  <button id = "connor7341"> Host </button>
-    <button id = "ponnor7341"> Join </button>
+  <button id = "connor7341"> Channel </button>
+    <button id = "ponnor7341"> Enter </button>
 
 <canvas id="canvas" width="600" height="600"></canvas>
 <script>
@@ -30,55 +30,44 @@
   window.addEventListener('keydown',this.check,false);
 // here to     
   var onHostClick = function() {
-    var peer = new Peer(document.getElementById("name").value);
+    var peer = new Peer(document.getElementById("channel").value);
 peer.on('connection', function(conn) {
   conn.on('data', function(data){
     // Will print 'hi!'
     console.log(data);
   });
 })
-    console.log(document.getElementById("name").value   ,
-"Is Hosting game...");
+    console.log(document.getElementById("channel").value);
   };
   var clickerButton = document.getElementById("connor7341");
 clickerButton.addEventListener("click", onHostClick);
   var onJoinClick = function() {
     var peer = new Peer(); 
     peer.on ("open", function(){
-    var conn = peer.connect(document.getElementById("name").value);
+    var conn = peer.connect(document.getElementById("channel").value);
       conn.on('open', function(){
-      conn.send('hi');
+      conn.send(document.getElementById("channel").value);
       });
     });
     
-    console.log(document.getElementById("name").value,"Is Joining game...");
+    console.log(document.getElementById("channel").value,);
   };
 
 /////////////////////////////////////////////////////////////////////
 
-  var onHostClick = function() {
-    var peer = new Peer(document.getElementById("notname").value);
-peer.on('connection', function(conn) {
-  conn.on('data', function(data){
-    // Will print 'hi!'
-    console.log(data);
-  });
-})
-    console.log(document.getElementById("notname").value );
-  };
-  var clickerButton = document.getElementById("connor7341");
-clickerButton.addEventListener("click", onHostClick);
-
+    console.log(document.getElementById("messages").value );
+  
+ 
   var onJoinClick = function() {
     var peer = new Peer(); 
     peer.on ("open", function(){
-    var conn = peer.connect(document.getElementById("notname").value);
+    var conn = peer.connect(document.getElementById("messages").value);
       conn.on('open', function(){
-      conn.send(document.getElementById("notname").value);
+      conn.send(document.getElementById("messages").value);
       });
     });
     
-    console.log(document.getElementById("notname").value);
+    console.log(document.getElementById("messages").value);
   };
   ///////////////////////////////////////////////////////////////////////////
   var clickButton = document.getElementById("ponnor7341");
