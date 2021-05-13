@@ -36,22 +36,19 @@ peer.on('connection', function(conn) {
     // Will print 'hi!'
     console.log(data);
   });
-})
-    console.log(document.getElementById("channel").value   ,
-"making channel");
-  };
+});
   var clickerButton = document.getElementById("connor7341");
 clickerButton.addEventListener("click", onHostClick);
   var onJoinClick = function() {
     var peer = new Peer(); 
     peer.on ("open", function(){
-    var conn = peer.connect(document.getElementById("channel").value);
+    var conn = peer.connect(document.getElementById("messages").value);
       conn.on('open', function(){
-      conn.send(document.getElementById("channel").value);
+      conn.send(document.getElementById("messages").value);
       });
     });
     
-    console.log(document.getElementById("channel").value);
+    console.log(document.getElementById("messages").value);
   };
 
 /////////////////////////////////////////////////////////////////////
@@ -64,6 +61,7 @@ peer.on('connection', function(conn) {
     console.log(data);
   });
 })
+    
     console.log(document.getElementById("messages").value );
   };
   var clickerButton = document.getElementById("connor7341");
@@ -78,7 +76,7 @@ clickerButton.addEventListener("click", onHostClick);
       });
     });
     
-    console.log(document.getElementById("messages").value);///////////////////////////////////////////////////////////////////
+    console.log(document.getElementById("messages").value);
   };
   ///////////////////////////////////////////////////////////////////////////
   var clickButton = document.getElementById("ponnor7341");
