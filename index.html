@@ -9,8 +9,8 @@
   <input type = "text" id="channel">
     <input type = "text" id="messages">
 
-  <button id = "connor7341"> Channel </button>
-    <button id = "ponnor7341"> Enter </button>
+  <button id = "connor7341"> Host </button>
+    <button id = "ponnor7341"> Join </button>
 
 <canvas id="canvas" width="600" height="600"></canvas>
 <script>
@@ -37,7 +37,8 @@ peer.on('connection', function(conn) {
     console.log(data);
   });
 })
-    console.log(document.getElementById("channel").value);
+    console.log(document.getElementById("channel").value   ,
+"making channel");
   };
   var clickerButton = document.getElementById("connor7341");
 clickerButton.addEventListener("click", onHostClick);
@@ -50,14 +51,24 @@ clickerButton.addEventListener("click", onHostClick);
       });
     });
     
-    console.log(document.getElementById("channel").value,);
+    console.log(document.getElementById("channel").value);
   };
 
 /////////////////////////////////////////////////////////////////////
 
+  var onHostClick = function() {
+    var peer = new Peer(document.getElementById("messages").value);
+peer.on('connection', function(conn) {
+  conn.on('data', function(data){
+    // Will print 'hi!'
+    console.log(data);
+  });
+})
     console.log(document.getElementById("messages").value );
-  
- 
+  };
+  var clickerButton = document.getElementById("connor7341");
+clickerButton.addEventListener("click", onHostClick);
+
   var onJoinClick = function() {
     var peer = new Peer(); 
     peer.on ("open", function(){
