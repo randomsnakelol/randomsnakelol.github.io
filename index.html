@@ -7,7 +7,7 @@
 </head>
 <body>
   <input type = "text" id="name">
-    <input type = "text" id="name">
+    <input type = "text" id="notname">
 
   <button id = "connor7341"> Host </button>
     <button id = "ponnor7341"> Join </button>
@@ -47,11 +47,40 @@ clickerButton.addEventListener("click", onHostClick);
     peer.on ("open", function(){
     var conn = peer.connect(document.getElementById("name").value);
       conn.on('open', function(){
-      conn.send('hi!');
+      conn.send('hi');
       });
     });
+    
     console.log(document.getElementById("name").value,"Is Joining game...");
   };
+
+/////////////////////////////////////////////////////////////////////
+
+  var onHostClick = function() {
+    var peer = new Peer(document.getElementById("notname").value);
+peer.on('connection', function(conn) {
+  conn.on('data', function(data){
+    // Will print 'hi!'
+    console.log(data);
+  });
+})
+    console.log(document.getElementById("notname").value );
+  };
+  var clickerButton = document.getElementById("connor7341");
+clickerButton.addEventListener("click", onHostClick);
+
+  var onJoinClick = function() {
+    var peer = new Peer(); 
+    peer.on ("open", function(){
+    var conn = peer.connect(document.getElementById("notname").value);
+      conn.on('open', function(){
+      conn.send(document.getElementById("notname").value);
+      });
+    });
+    
+    console.log(document.getElementById("notname").value);
+  };
+  ///////////////////////////////////////////////////////////////////////////
   var clickButton = document.getElementById("ponnor7341");
 clickButton.addEventListener("click", onJoinClick);
   window.setInterval(this.everySecond, 1);
