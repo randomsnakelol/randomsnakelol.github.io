@@ -17,10 +17,10 @@
   var canvas = document.getElementById("canvas");
   var ctx = canvas.getContext("2d");
   var drawCar = function(x, y){
-  var canvas = document.getElementById("canvas");
-  var ctx = canvas.getContext("2d");
-  
-    ctx.fillRect(0+x,0+y,50,50);    
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+
+    ctx.fillRect(0+x,0+y,50,50);
   }
   var carX = 0;
   var carY = 0;
@@ -28,27 +28,28 @@
   var speedY = 0;
 
   window.addEventListener('keydown',this.check,false);
-// here to     
+// here to
   var onHostClick = function() {
-    var peer = new Peer(document.getElementById("channel").value);
-peer.on('connection', function(conn) {
-  conn.on('data', function(data){
-    // Will print 'hi!'
-    console.log(data);
-  });
-});
+      var peer = new Peer(document.getElementById("channel").value);
+      peer.on('connection', function(conn) {
+            conn.on('data', function (data) {
+                // Will print 'hi!'
+                console.log(data);
+            });
+})
+}
   var clickerButton = document.getElementById("connor7341");
 clickerButton.addEventListener("click", onHostClick);
   var onJoinClick = function() {
-    var peer = new Peer(); 
+    var peer = new Peer();
     peer.on ("open", function(){
-    var conn = peer.connect(document.getElementById("messages").value);
+    var conn = peer.connect(document.getElementById("channel").value);
       conn.on('open', function(){
-      conn.send(document.getElementById("messages").value);
+            conn.send(document.getElementById("channel").value);
       });
     });
-    
-    console.log(document.getElementById("messages").value);
+
+    console.log(document.getElementById("channel").value);
   };
 
 /////////////////////////////////////////////////////////////////////
@@ -56,26 +57,25 @@ clickerButton.addEventListener("click", onHostClick);
   var onHostClick = function() {
     var peer = new Peer(document.getElementById("messages").value);
 peer.on('connection', function(conn) {
-  conn.on('data', function(data){
-    // Will print 'hi!'
-    console.log(data);
-  });
+            conn.on('data', function (data) {
+                // Will print 'hi!'
+                console.log(data);
+            });
 })
-    
     console.log(document.getElementById("messages").value );
   };
   var clickerButton = document.getElementById("connor7341");
 clickerButton.addEventListener("click", onHostClick);
 
   var onJoinClick = function() {
-    var peer = new Peer(); 
+    var peer = new Peer();
     peer.on ("open", function(){
-    var conn = peer.connect(document.getElementById("messages").value);
+    var conn = peer.connect(document.getElementById("channel").value);
       conn.on('open', function(){
-      conn.send(document.getElementById("messages").value);
+            conn.send(document.getElementById("messages").value);
       });
     });
-    
+
     console.log(document.getElementById("messages").value);
   };
   ///////////////////////////////////////////////////////////////////////////
@@ -89,14 +89,15 @@ clickButton.addEventListener("click", onJoinClick);
       case 83:speedY += 1; break //s
       case 65:speedX -= 1; break //a
       case 68:speedX += 1; break //d
-    }         
+    }
   }
   function everySecond(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
     carY += speedY;
     carX += speedX;
-    drawCar(carX, carY); 
+    drawCar(carX, carY);
   }
+
 </script>
 </body>
 </html>
