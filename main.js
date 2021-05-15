@@ -1,73 +1,51 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
+var hostingButton = document.getElementById("hosting");
+var myConn = null;
 
-window.addEventListener("keydown", this.check, false);
-// here to
-var onHostClick = function () {
+var text = 15;
+
+var isHosting = function () {
+  console.log(document.getElementById("channel").value, "is hosting");
   var peer = new Peer(document.getElementById("channel").value);
   peer.on("connection", function (conn) {
+    myConn = conn;
     conn.on("data", function (data) {
-      // Will print 'hi!'
-      console.log(data);
+      ctx.font = "20px Arial";
+      ctx.fillStyle = "#808080";
+      ctx.fillText(data, 300, text);
+      text += 20;
     });
   });
 };
-var clickerButton = document.getElementById("connor7341");
-clickerButton.addEventListener("click", onHostClick);
-var onJoinClick = function () {
+hostingButton.addEventListener("click", isHosting);
+
+var joiningButton = document.getElementById("ponnor7341");
+var isJoining = function () {
+  console.log(document.getElementById("channel").value, "is joining");
+
   var peer = new Peer();
   peer.on("open", function () {
     var conn = peer.connect(document.getElementById("channel").value);
     conn.on("open", function () {
-      conn.send(document.getElementById("channel").value);
+      myConn = conn;
+      myConn.on("data", function (data) {
+        ctx.font = "20px Arial";
+        ctx.fillStyle = "#808080";
+        ctx.fillText(data, 300, text);
+        text += 20;
+      });
     });
   });
-
-  console.log(document.getElementById("channel").value);
 };
+joiningButton.addEventListener("click", isJoining);
 
-/////////////////////////////////////////////////////////////////////
-
-var onHostClick = function () {
-  var peer = new Peer(document.getElementById("channel").value);
-  peer.on("connection", function (conn) {
-    conn.on("data", function (data) {
-      // Will print 'hi!'
-      console.log("Received message", data);
-    });
-  });
-  console.log(document.getElementById("channel").value, "Is the channel name");
+var chattingButton = document.getElementById("ronnor7341");
+var chatting = function () {
+  myConn.send(document.getElementById("messages").value);
+  ctx.font = "20px Arial";
+  ctx.fillStyle = "#0000ff";
+  ctx.fillText(document.getElementById("messages").value, 5, text);
+  text += 20;
 };
-var clickerButton = document.getElementById("connor7341");
-clickerButton.addEventListener("click", onHostClick);
-
-var onJoinClick = function () {
-  var peer = new Peer();
-  peer.on("open", function () {
-    var conn = peer.connect(document.getElementById("channel").value);
-    conn.on("open", function () {
-      conn.send(document.getElementById("messages").value);
-    });
-  });
-
-  console.log(document.getElementById("messages").value);
-};
-
-var onSendClick = function () {
-  var peer = new Peer();
-  peer.on("open", function () {
-    var conn = peer.connect(document.getElementById("messages").value);
-    conn.on("open", function () {
-      conn.send(document.getElementById("messages").value);
-    });
-  });
-
-  console.log(document.getElementById("messages").value);
-  ctx.font = "30px Arial";
-  ctx.fillText("Hello World", 10, 50);
-};
-///////////////////////////////////////////////////////////////////////////
-
-//////////////////////////////////////////
-var clickButton = document.getElementById("ponnor7341");
-clickButton.addEventListener("click", onJoinClick);
+chattingButton.addEventListener("click", chatting);
