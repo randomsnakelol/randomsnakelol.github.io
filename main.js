@@ -48,4 +48,4 @@ var chatting = function () {
   ctx.fillText(document.getElementById("messages").value, 5, text);
   text += 20;
 };
-chattingButton.addEventListener("click", chatting);
+chattingButton.addEventListener("click", chatting); /////
