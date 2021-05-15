@@ -10,7 +10,6 @@ chattingButton. disabled = true
 var chatting = function () {
 
     myConn.send(document.getElementById('messages').value);
-    agnapfn
     ctx.font = "20px Arial";
     ctx.fillStyle = "#0000ff";
     ctx.fillText(document.getElementById('messages').value, 5, text);
