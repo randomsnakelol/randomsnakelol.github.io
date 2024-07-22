@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Game with Math Problems</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="maze-container">
+        <div id="maze"></div>
+    </div>
+    <div id="math-problem-container" class="hidden">
+        <p id="math-question"></p>
+        <input type="number" id="math-answer" placeholder="Enter your answer">
+        <button onclick="checkAnswer()">Submit</button>
+        <p id="timer"></p>
+    </div>
+    <div id="score-container">
+        <p>Score: <span id="score">0</span></p>
+    </div>
+    <div id="problemPopup" style="display: none;">
+        <!-- Content for the problem popup, such as math problem and input fields -->
+        <p id="problemText"></p>
+        <input type="text" id="answerInput" />
+        <button id="submitAnswerButton">Submit Answer</button>
+    </div>
+
+    <div id="legend">
+        <p><span class="cell start"></span> Start</p>
+        <p><span class="cell path"></span> Path</p>
+        <p><span class="cell wall"></span> Wall</p>
+        <p><span class="cell checkpoint"></span> Checkpoint</p>
+        <p><span class="cell end"></span> End</p>
+        <p><span class="cell current"></span> Current Position</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#maze-container {
+  margin: 20px auto;
+  text-align: center;
+}
+
+#maze {
+  display: grid;
+  grid-template-columns: repeat(10, 50px); /* Increased columns to 10 */
+  grid-template-rows: repeat(10, 50px); /* Increased rows to 10 */
+  gap: 5px;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black; /* Added border for visualization */
+}
+
+.start {
+  background-color: green;
+}
+
+.path {
+  background-color: lightgray;
+}
+
+.wall {
+  background-color: black;
+}
+
+.checkpoint {
+  background-color: yellow;
+}
+
+.end {
+    background-color: red;
+    cursor: pointer; /* Add this to ensure it looks clickable */
+}
+
+
+.current {
+  background-color: orange; /* Highlight the current position */
+}
+
+#math-problem-container {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+#timer {
+  font-size: 18px;
+  color: red;
+}
+
+#score-container {
+  margin: 20px auto;
+  text-align: center;
+  font-size: 18px;
+}
+
+#legend {
+  margin: 20px auto;
+  text-align: center;
+}
+
+#legend p {
+  display: flex;
+  align-items: center;
+}
+
+#legend .cell {
+  margin-right: 10px;
+}
